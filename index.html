@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Data dari Spreadsheet</title>
+</head>
+
+<body>
+  <h1>Data Mahasiswa</h1>
+  <table border="1" id="dataTable">
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>Umur</th>
+        <th>Kota</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    fetch('https://script.google.com/macros/s/AKfycbyTuVDU8orQIXE41kIexHTvAkc6Jz13WFwgYl4f5-UpiF9LlGhEvSFpacCZ6EuYAtM/exec') // ganti dengan URL kamu
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        const tbody = document.querySelector("#dataTable tbody");
+        data.forEach(item => {
+          const row = `<tr><td>${item.Nama}</td><td>${item.Umur}</td><td>${item.Kota}</td></tr>`;
+          tbody.innerHTML += row;
+        });
+      });
+  </script>
+</body>
+
+</html>
